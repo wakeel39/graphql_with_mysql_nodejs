@@ -1,0 +1,69 @@
+sequlizerjs data types
+http://docs.sequelizejs.com/manual/data-types.html
+
+
+---installing sequlizer cli ----
+npm install --save sequelize-cli
+
+----after that create migraiton model and config folders---
+npx sequelize init
+
+
+------------migration------------------
+---create model with migration-----
+npx sequelize model:generate --name User --attributes firstName:string,lastName:string,email:string
+
+
+---Running migration--- 
+npx sequelize db:migrate
+
+---Revert migration---
+
+----Revert all migration--
+db:migrate:undo:all
+
+
+-----Most Recent revert
+npx sequelize db:migrate:undo
+
+----specific migration revert
+npx sequelize db:migrate:undo:all --to XXXXXXXXXXXXXX-create-posts.js
+
+
+/////////////////////graphql points ///////
+
+//calling a mutations
+mutation{
+  create(first_name :"ali",last_name :"ahmad",email :"ali@email.com"){
+    id,
+    first_name,
+    last_name,
+    email,
+    birthdate
+  }
+}
+
+1) we can write rosolve function in object type
+2) we can call muliple endpoints in one call example below 
+{
+ Author: Author(id:1) {
+    id
+    first_name
+    last_name
+    email
+    birthdate
+},
+  AuthorS: Authors {
+    id
+    first_name
+    last_name
+    email
+    birthdate
+}
+}
+
+
+/////////////////////client side 
+screen shot (http://prntscr.com/nisryn)
+apollo provider (apolo provider get the data and inject in react app)
+apollo store (store the data on client side comming from graphql)
